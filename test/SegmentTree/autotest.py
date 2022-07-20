@@ -86,7 +86,7 @@ def CleanUp( plat : str ):
     shutil.rmtree("out")
     if os.path.isdir( "__pycache__" ):
         shutil.rmtree("__pycache__")
-    if platform.system() == "Windows":
+    if plat == "Windows":
         os.remove( "gen.exe" )
         os.remove( "std.exe" )
         os.remove( "test.exe" )
