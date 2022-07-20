@@ -50,20 +50,6 @@ def RunStd( plat : str ):
         os.system( command )
         print("Succeeded!")
 
-def DelFile( plat : str ):
-    # Delete generated files
-    print()
-    print("### Delete generated files ###")
-    if plat == "Windows":
-        os.system( "del /f /q gen.exe" )
-        print("Deleted gen.exe")
-        os.system( "del /f /q std.exe" )
-        print("Deleted std.exe")
-    else:
-        os.system("rm -f gen std")
-        print("Deleted gen and std")
-    print ("### Done! ###")
-
 def RunTest():
     # Run the test
     print("\n### Running test ###")
@@ -101,16 +87,19 @@ def CleanUp( plat : str ):
     if os.path.isdir( "__pycache__" ):
         shutil.rmtree("__pycache__")
     if platform.system() == "Windows":
+        os.remove( "gen.exe" )
+        os.remove( "std.exe" )
         os.remove( "test.exe" )
     else:
-        os.remove( "test" )
+        os.remove( "gen" )
+        os.remove( "std" )
+        os.reamove( "test" )
 
 if __name__ == "__main__":
     plat = platform.system()
     Compile()
     GenTest( plat )
     RunStd( plat )
-    DelFile( plat )
     RunTest()
     if DiffFile() == True:
         print( "\nAll test passed!" )
