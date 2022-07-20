@@ -17,7 +17,7 @@ data structure, so it is suitable for beginners, especially for those teens who 
 
 At last, put my compiler settings here:
 ```bash
-Operating System: Windows 7/10
+Operating System: Windows 7/10/11
 Editor: Visual Studio Code
 Compiler: TDM-GCC 10.3 based on MinGW-W64
 Browser: Chrome

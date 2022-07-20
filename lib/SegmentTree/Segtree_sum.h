@@ -4,6 +4,7 @@
 #pragma once
 
 #ifndef SEGTREE_SUM
+#define SEGTREE_SUM
 
 // Type definitions
 typedef long long ll;
@@ -15,8 +16,8 @@ namespace SegTree
 {
     // Definitions and conventions
     #define ls ( k << 1 )           // Left child
-    #define rs ( k << 1 | 1 )       // Right child
-    #define mid ( l + ( r - l ) >> 1 )  // Middle of the interval
+    #define rs ( ( k << 1 ) + 1 )   // Right child
+    #define mid ( l + r >> 1 )      // Middle of the interval
 
     typedef ll T;                   // Data type stored in SegTree
     const int maxn = 1e5 + 10;      // Maximum array size
@@ -87,6 +88,9 @@ namespace SegTree
     {
         // Included in this interval
         if ( s <= l && r <= t ) return sum[ k ];
+
+        // Pushdown
+        pushdown( k, l, r );
 
         // Define a new variable to store return values.
         T ans = 0;
