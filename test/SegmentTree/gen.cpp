@@ -83,5 +83,7 @@ int main(int argc, char* argv[])
     GenerateOps();
     WriteToFile(argv[3]);
 
+    delete[] origin;
+
     return 0;
 }
