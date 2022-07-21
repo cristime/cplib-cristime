@@ -5,7 +5,11 @@
 #ifndef TREESEGMENTATION
 #define TREESEGMENTATION
 
+#include <algorithm> // for swap
+#include <cstring> // memset
 #include <vector> // Store edges
+
+typedef long long ll; // Data type stored in SegTree
 
 // Basic data structure: Segment Tree
 namespace SegTree {
@@ -14,7 +18,7 @@ namespace SegTree {
 #define rs (k << 1 | 1) // Right child
 #define mid (l + (r - l) >> 1) // Middle of the interval
 
-typedef int T; // Data type stored in SegTree
+typedef ll T; // Data type stored in SegTree
 const int maxn = 1e5 + 10; // Maximum array size
 
 static T sum[maxn << 2]; // SegTree sum
@@ -102,12 +106,12 @@ T query(const int s, const int t, const int k, const int l, const int r)
 } // namespace SegTree
 
 namespace TreeSegmentation {
-typedef int T; // Using int as data type
+typedef ll T; // Using long long as data type
 
-std::vector<int> edge[SegTree::maxn]; // Store edges
+::std::vector<int> edge[SegTree::maxn]; // Store edges
 T w[SegTree::maxn]; // Store weights
 
-int n, m; // Number of vertices and edges
+int n; // Number of vertices
 int cnt; // Count the depth-first-search order
 int rnk[SegTree::maxn]; // Rank of vertices
 int dfn[SegTree::maxn]; // Depth-first-search order
@@ -152,12 +156,12 @@ void UpdateChain(int u, int v, const T& delta)
     while (top[u] != top[v]) // Update chain in the tree
     {
         if (dep[top[u]] > dep[top[v]])
-            std::swap(u, v); // Select the deeper vertex
+            ::std::swap(u, v); // Select the deeper vertex
         SegTree::update(dfn[top[u]], dfn[u], delta, 1, 1, n); // Update the chain
         u = fa[top[u]]; // Update the vertex
     }
     if (dep[u] > dep[v])
-        std::swap(u, v); // Select the shallower vertex
+        ::std::swap(u, v); // Select the shallower vertex
     SegTree::update(dfn[u], dfn[v], delta, 1, 1, n); // Update the last chain
 }
 
@@ -168,12 +172,12 @@ T QueryChain(int u, int v)
     while (top[u] != top[v]) // Query the sum of the chain
     {
         if (dep[top[u]] > dep[top[v]])
-            std::swap(u, v); // Select the deeper vertex
+            ::std::swap(u, v); // Select the deeper vertex
         ans += SegTree::query(dfn[top[u]], dfn[u], 1, 1, n); // Query the chain
         v = fa[top[v]]; // Update the vertex
     }
     if (dep[u] > dep[v])
-        std::swap(u, v); // Select the shallower vertex
+        ::std::swap(u, v); // Select the shallower vertex
     return ans + SegTree::query(dfn[u], dfn[v], 1, 1, n); // Query the last chain
 }
 
@@ -189,6 +193,27 @@ T QuerySubTree(int u)
 {
     return SegTree::query(dfn[u], dfn[u] + sz[u] - 1, 1, 1,
         n); // Query the subtree
+}
+
+// Init the tree
+void Init(int _n, const ::std::vector<T>& _w,
+    const ::std::vector<::std::pair<int, int>>& _edge)
+{
+    n = _n;
+    cnt = 0;
+    memset(son, 0, sizeof(son));
+    memset(fa, 0, sizeof(fa));
+    memset(dep, 0, sizeof(dep));
+    memset(sz, 0, sizeof(sz));
+    memset(top, 0, sizeof(top));
+    for (int i = 1; i <= n; i++)
+        edge[i].clear();
+    for (auto& p : _edge) {
+        edge[p.first].push_back(p.second);
+        edge[p.second].push_back(p.first);
+    }
+    for (int i = 1; i <= n; i++)
+        w[i] = _w[i];
 }
 
 } // namespace TreeSegmentation

@@ -1,7 +1,6 @@
 // Segment Tree for sums
 // 2022/6/5 created by Cristime
 // Licence: MIT
-#pragma once
 
 #ifndef SEGTREE_SUM
 #define SEGTREE_SUM
