@@ -1,17 +1,21 @@
-import os, platform, filecmp, shutil
+import os
+import platform
+import filecmp
+import shutil
 
 test_num = 5
 prop = [
-    ( 100, 100 ),
-    ( 1000, 1000 ),
-    ( 10000, 10000 ),
-    ( 50000, 10000 ),
-    ( 50000, 50000 ),
+    (100, 100),
+    (1000, 1000),
+    (10000, 10000),
+    (50000, 10000),
+    (50000, 50000),
 ]
+
 
 def Compile():
     print("### Compile the codes ###")
-    
+
     # Compile the code
     print("g++ gen.cpp -o gen -std=c++14 -O2")
     os.system("g++ gen.cpp -o gen -std=c++14 -O2")
@@ -20,87 +24,96 @@ def Compile():
     print("g++ test.cpp -o test -std=c++14 -O2")
     os.system("g++ test.cpp -o test -std=c++14 -O2")
 
-def GenTest( plat : str ):
+
+def GenTest(plat: str):
     # Generating the test cases
     print()
     print("### Generating the test cases ###")
-    if os.path.isdir( "in" ) == False:
-        os.mkdir( "in" )
-    for i in range( 1, 5 + 1 ):
+    if os.path.isdir("in") == False:
+        os.mkdir("in")
+    for i in range(1, 5 + 1):
         print("Generating test case {}......".format(i), end="")
         if plat == "Windows":
-            command = "gen.exe {} {} in\\input{}.txt".format( prop[i-1][0], prop[i-1][1], i )
+            command = "gen.exe {} {} in\\input{}.txt".format(
+                prop[i-1][0], prop[i-1][1], i)
         else:
-            command = "./gen {} {} in/input{}.txt".format( prop[i-1][0], prop[i-1][1], i )
-        os.system( command )
+            command = "./gen {} {} in/input{}.txt".format(
+                prop[i-1][0], prop[i-1][1], i)
+        os.system(command)
         print("Succeeded!")
 
-def RunStd( plat : str ):
+
+def RunStd(plat: str):
     # Run std code
     print()
     print("### Run std code ###")
-    if os.path.isdir( "out" ) == False:
-        os.mkdir( "out" )
-    for i in range( 1, test_num + 1 ):
+    if os.path.isdir("out") == False:
+        os.mkdir("out")
+    for i in range(1, test_num + 1):
         print("Running test case {}......".format(i), end="")
         if plat == "Windows":
-            command = "std.exe in\\input{}.txt out\\output{}.txt".format( i, i )
+            command = "std.exe in\\input{}.txt out\\output{}.txt".format(i, i)
         else:
-            command = "./std in/input{}.txt out/output{}.txt".format( i, i )
-        os.system( command )
+            command = "./std in/input{}.txt out/output{}.txt".format(i, i)
+        os.system(command)
         print("Succeeded!")
+
 
 def RunTest():
     # Run the test
     print("\n### Running test ###")
 
-    if os.path.isdir( "test_out" ) == False:
-        os.mkdir( "test_out" )
-    
-    for i in range( 1, test_num + 1 ):
+    if os.path.isdir("test_out") == False:
+        os.mkdir("test_out")
+
+    for i in range(1, test_num + 1):
         print("Running test case {}......".format(i), end="")
         if platform.system() == "Windows":
-            command = "test.exe in\\input{}.txt test_out\\output{}.txt".format( i, i )
+            command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
+                i, i)
         else:
-            command = "test in/input{}.txt test_out/output{}.txt".format( i, i )
-        os.system( command )
+            command = "test in/input{}.txt test_out/output{}.txt".format(i, i)
+        os.system(command)
         print("Succeeded!")
+
 
 def DiffFile():
     # Diff the output file
     print("\n### Diff the output file ###")
 
-    for i in range( 1, test_num + 1 ):
+    for i in range(1, test_num + 1):
         print("Diffing test case {}......".format(i), end="")
-        if filecmp.cmp( "out/output{}.txt".format( i ), "test_out/output{}.txt".format( i ) ) == False:
-            print("\n\nTest case {} failed!".format( i ))
+        if filecmp.cmp("out/output{}.txt".format(i), "test_out/output{}.txt".format(i)) == False:
+            print("\n\nTest case {} failed!".format(i))
             return False
-        print( "Succeeded!" )
-        
+        print("Succeeded!")
+
     return True
 
-def CleanUp( plat : str ):
+
+def CleanUp(plat: str):
     # Clean up the test output file
     shutil.rmtree("test_out")
     shutil.rmtree("in")
     shutil.rmtree("out")
-    if os.path.isdir( "__pycache__" ):
+    if os.path.isdir("__pycache__"):
         shutil.rmtree("__pycache__")
     if plat == "Windows":
-        os.remove( "gen.exe" )
-        os.remove( "std.exe" )
-        os.remove( "test.exe" )
+        os.remove("gen.exe")
+        os.remove("std.exe")
+        os.remove("test.exe")
     else:
-        os.remove( "gen" )
-        os.remove( "std" )
-        os.reamove( "test" )
+        os.remove("gen")
+        os.remove("std")
+        os.reamove("test")
+
 
 if __name__ == "__main__":
     plat = platform.system()
     Compile()
-    GenTest( plat )
-    RunStd( plat )
+    GenTest(plat)
+    RunStd(plat)
     RunTest()
     if DiffFile() == True:
-        print( "\nAll test passed!" )
-    CleanUp( plat )
+        print("\nAll test passed!")
+    CleanUp(plat)
