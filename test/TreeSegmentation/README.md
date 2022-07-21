@@ -1,4 +1,4 @@
-## Segment Tree Test
+## Tree Segmentation Test
 
 This test project uses [Testlib](https://github.com/mikemirzayanov/testlib), which included in ../Testlib. So you do not have to download manually.
 
