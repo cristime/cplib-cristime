@@ -2,14 +2,20 @@ import os
 import platform
 import filecmp
 import shutil
+import time
 
-test_num = 5
+test_num = 10
 prop = [
     (100, 100, 50),
     (1000, 1000, 50),
     (10000, 10000, 100),
     (50000, 10000, 100),
     (50000, 50000, 100),
+    (75000, 75000, 100),
+    (75000, 75000, 200),
+    (75000, 75000, 300),
+    (100000, 100000, 200),
+    (100000, 100000, 300)
 ]
 
 
@@ -39,8 +45,11 @@ def GenTest(plat: str):
         else:
             command = "./gen {} {} {} in/input{}.txt".format(
                 prop[i-1][0], prop[i-1][1], prop[i-1][2], i)
+        startTime = time.perf_counter()
         os.system(command)
-        print("Succeeded!")
+        endTime = time.perf_counter()
+        print("Succeeded!", end="\t")
+        print("Time used: {}ms".format(int((endTime - startTime) * 1000)))
 
 
 def RunStd(plat: str):
@@ -55,8 +64,11 @@ def RunStd(plat: str):
             command = "std.exe in\\input{}.txt out\\output{}.txt".format(i, i)
         else:
             command = "./std in/input{}.txt out/output{}.txt".format(i, i)
+        startTime = time.perf_counter()
         os.system(command)
-        print("Succeeded!")
+        endTime = time.perf_counter()
+        print("Succeeded!", end="\t")
+        print("Time used: {}ms".format(int((endTime - startTime) * 1000)))
 
 
 def RunTest():
@@ -73,8 +85,11 @@ def RunTest():
                 i, i)
         else:
             command = "test in/input{}.txt test_out/output{}.txt".format(i, i)
+        startTime = time.perf_counter()
         os.system(command)
-        print("Succeeded!")
+        endTime = time.perf_counter()
+        print("Succeeded!", end="\t")
+        print("Time used: {}ms".format(int((endTime - startTime) * 1000)))
 
 
 def DiffFile():
