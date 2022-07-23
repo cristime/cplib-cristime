@@ -125,6 +125,7 @@ def CleanUp(plat: str):
 
 if __name__ == "__main__":
     plat = platform.system()
+    print("\033[32m", end="")
     Compile()
     GenTest(plat)
     RunStd(plat)

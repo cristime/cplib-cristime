@@ -43,8 +43,8 @@ int main(int argc, char* argv[])
 {
     registerGen(argc, argv, 1);
 
-    arraySize = atoi(argv[1]);
-    operNum = atoi(argv[2]);
+    arraySize = opt<int>(1);
+    operNum = opt<int>(2);
 
     GenerateArray();
     GenerateOps();

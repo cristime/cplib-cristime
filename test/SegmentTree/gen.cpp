@@ -76,8 +76,8 @@ int main(int argc, char* argv[])
 {
     registerGen(argc, argv, 1); // Register the generator function
 
-    n = atoi(argv[1]); // Length of the array
-    m = atoi(argv[2]); // Number of queries
+    n = opt<int>(1); // Length of the array
+    m = opt<int>(2); // Number of queries
 
     GenerateArray();
     GenerateOps();

@@ -97,9 +97,9 @@ int main(int argc, char* argv[])
 {
     registerGen(argc, argv, 1);
 
-    n = atoi(argv[1]);
-    m = atoi(argv[2]);
-    stretch = atoi(argv[3]);
+    n = opt<int>(1);
+    m = opt<int>(2);
+    stretch = opt<int>(3);
 
     GenTree();
     GenOperations();
