@@ -1,0 +1,108 @@
+[32m### Compile the codes ###
+g++ gen.cpp -o gen -std=c++14 -O2
+g++ std.cpp -o std -std=c++14 -O2
+g++ test.cpp -o test -std=c++14 -O2
+
+### Generating the test cases ###
+Generating test case 1......Succeeded!	Time used: 1ms
+Generating test case 2......Succeeded!	Time used: 2ms
+Generating test case 3......Succeeded!	Time used: 9ms
+Generating test case 4......Succeeded!	Time used: 11ms
+Generating test case 5......Succeeded!	Time used: 52ms
+Generating test case 6......Succeeded!	Time used: 44ms
+Generating test case 7......Succeeded!	Time used: 120ms
+Generating test case 8......Succeeded!	Time used: 178ms
+Generating test case 9......Succeeded!	Time used: 66ms
+Generating test case 10......Succeeded!	Time used: 92ms
+
+### Run std code ###
+Running test case 1......Succeeded!	Time used: 2ms
+Running test case 2......Succeeded!	Time used: 1ms
+Running test case 3......Succeeded!	Time used: 11ms
+Running test case 4......Succeeded!	Time used: 15ms
+Running test case 5......Succeeded!	Time used: 28ms
+Running test case 6......Succeeded!	Time used: 27ms
+Running test case 7......Succeeded!	Time used: 76ms
+Running test case 8......Succeeded!	Time used: 86ms
+Running test case 9......Succeeded!	Time used: 79ms
+Running test case 10......Succeeded!	Time used: 102ms
+
+### Running test ###
+Running test case 1......Succeeded!	Time used: 1ms
+Running test case 2......Succeeded!	Time used: 1ms
+Running test case 3......Succeeded!	Time used: 5ms
+Running test case 4......Succeeded!	Time used: 14ms
+Running test case 5......Succeeded!	Time used: 52ms
+Running test case 6......Succeeded!	Time used: 53ms
+Running test case 7......Succeeded!	Time used: 76ms
+Running test case 8......Succeeded!	Time used: 99ms
+Running test case 9......Succeeded!	Time used: 79ms
+Running test case 10......Succeeded!	Time used: 96ms
+
+### Diff the output file ###
+Diffing test case 1......Succeeded!
+Diffing test case 2......Succeeded!
+Diffing test case 3......Succeeded!
+Diffing test case 4......Succeeded!
+Diffing test case 5......Succeeded!
+Diffing test case 6......Succeeded!
+Diffing test case 7......Succeeded!
+Diffing test case 8......Succeeded!
+Diffing test case 9......Succeeded!
+Diffing test case 10......Succeeded!
+
+All test passed!
+[32m### Compile the codes ###
+g++ gen.cpp -o gen -std=c++14 -O2
+g++ std.cpp -o std -std=c++14 -O2
+g++ test.cpp -o test -std=c++14 -O2
+
+### Generating the test cases ###
+Generating test case 1......Succeeded!	Time used: 1ms
+Generating test case 2......Succeeded!	Time used: 2ms
+Generating test case 3......Succeeded!	Time used: 9ms
+Generating test case 4......Succeeded!	Time used: 23ms
+Generating test case 5......Succeeded!	Time used: 43ms
+Generating test case 6......Succeeded!	Time used: 88ms
+Generating test case 7......Succeeded!	Time used: 95ms
+Generating test case 8......Succeeded!	Time used: 123ms
+Generating test case 9......Succeeded!	Time used: 136ms
+Generating test case 10......Succeeded!	Time used: 103ms
+
+### Run std code ###
+Running test case 1......Succeeded!	Time used: 2ms
+Running test case 2......Succeeded!	Time used: 1ms
+Running test case 3......Succeeded!	Time used: 6ms
+Running test case 4......Succeeded!	Time used: 7ms
+Running test case 5......Succeeded!	Time used: 45ms
+Running test case 6......Succeeded!	Time used: 55ms
+Running test case 7......Succeeded!	Time used: 76ms
+Running test case 8......Succeeded!	Time used: 50ms
+Running test case 9......Succeeded!	Time used: 72ms
+Running test case 10......Succeeded!	Time used: 87ms
+
+### Running test ###
+Running test case 1......Succeeded!	Time used: 2ms
+Running test case 2......Succeeded!	Time used: 1ms
+Running test case 3......Succeeded!	Time used: 6ms
+Running test case 4......Succeeded!	Time used: 8ms
+Running test case 5......Succeeded!	Time used: 25ms
+Running test case 6......Succeeded!	Time used: 44ms
+Running test case 7......Succeeded!	Time used: 76ms
+Running test case 8......Succeeded!	Time used: 100ms
+Running test case 9......Succeeded!	Time used: 45ms
+Running test case 10......Succeeded!	Time used: 50ms
+
+### Diff the output file ###
+Diffing test case 1......Succeeded!
+Diffing test case 2......Succeeded!
+Diffing test case 3......Succeeded!
+Diffing test case 4......Succeeded!
+Diffing test case 5......Succeeded!
+Diffing test case 6......Succeeded!
+Diffing test case 7......Succeeded!
+Diffing test case 8......Succeeded!
+Diffing test case 9......Succeeded!
+Diffing test case 10......Succeeded!
+
+All test passed!

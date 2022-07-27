@@ -84,7 +84,7 @@ def RunTest():
             command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
                 i, i)
         else:
-            command = "test in/input{}.txt test_out/output{}.txt".format(i, i)
+            command = "./test in/input{}.txt test_out/output{}.txt".format(i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()

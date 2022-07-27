@@ -37,7 +37,7 @@ def GenTest(plat: str):
     print("### Generating the test cases ###")
     if os.path.isdir("in") == False:
         os.mkdir("in")
-    for i in range(1, 5 + 1):
+    for i in range(1, test_num + 1):
         print("Generating test case {}......".format(i), end="")
         if plat == "Windows":
             command = "gen.exe {} {} {} in\\input{}.txt".format(
@@ -84,7 +84,7 @@ def RunTest():
             command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
                 i, i)
         else:
-            command = "test in/input{}.txt test_out/output{}.txt".format(i, i)
+            command = "./test in/input{}.txt test_out/output{}.txt".format(i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -120,7 +120,7 @@ def CleanUp(plat: str):
     else:
         os.remove("gen")
         os.remove("std")
-        os.reamove("test")
+        os.remove("test")
 
 
 if __name__ == "__main__":

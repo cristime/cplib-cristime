@@ -63,7 +63,7 @@ def RunStd(plat: str):
         if plat == "Windows":
             command = "std.exe in\\input{}.txt out\\output{}.txt".format(i, i)
         else:
-            command = "./std in/input{}.txt out/output{}.txt".format(i, i)
+            command = "./std ./in/input{}.txt ./out/output{}.txt".format(i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -84,7 +84,7 @@ def RunTest():
             command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
                 i, i)
         else:
-            command = "test in/input{}.txt test_out/output{}.txt".format(i, i)
+            command = "./test ./in/input{}.txt ./test_out/output{}.txt".format(i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -98,7 +98,7 @@ def DiffFile():
 
     for i in range(1, test_num + 1):
         print("Diffing test case {}......".format(i), end="")
-        if filecmp.cmp("out/output{}.txt".format(i), "test_out/output{}.txt".format(i)) == False:
+        if filecmp.cmp("./out/output{}.txt".format(i), "./test_out/output{}.txt".format(i)) == False:
             print("\n\nTest case {} failed!".format(i))
             return False
         print("Succeeded!")
@@ -120,7 +120,7 @@ def CleanUp(plat: str):
     else:
         os.remove("gen")
         os.remove("std")
-        os.reamove("test")
+        os.remove("test")
 
 
 if __name__ == "__main__":
