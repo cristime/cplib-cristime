@@ -5,18 +5,9 @@ import shutil
 import time
 
 test_num = 10
-prop = [
-    (100, 100),
-    (1000, 1000),
-    (10000, 10000),
-    (50000, 10000),
-    (50000, 50000),
-    (75000, 50000),
-    (75000, 75000),
-    (75000, 100000),
-    (100000, 75000),
-    (100000, 100000)
-]
+prop = [(100, 100), (1000, 1000), (10000, 10000), (50000, 10000),
+        (50000, 50000), (75000, 50000), (75000, 75000), (75000, 100000),
+        (100000, 75000), (100000, 100000)]
 
 
 def Compile():
@@ -37,14 +28,14 @@ def GenTest(plat: str):
     print("### Generating the test cases ###")
     if os.path.isdir("in") == False:
         os.mkdir("in")
-    for i in range(1, 5 + 1):
+    for i in range(1, test_num + 1):
         print("Generating test case {}......".format(i), end="")
         if plat == "Windows":
             command = "gen.exe {} {} in\\input{}.txt".format(
-                prop[i-1][0], prop[i-1][1], i)
+                prop[i - 1][0], prop[i - 1][1], i)
         else:
             command = "./gen {} {} in/input{}.txt".format(
-                prop[i-1][0], prop[i-1][1], i)
+                prop[i - 1][0], prop[i - 1][1], i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -84,7 +75,8 @@ def RunTest():
             command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
                 i, i)
         else:
-            command = "./test in/input{}.txt test_out/output{}.txt".format(i, i)
+            command = "./test in/input{}.txt test_out/output{}.txt".format(
+                i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -98,7 +90,8 @@ def DiffFile():
 
     for i in range(1, test_num + 1):
         print("Diffing test case {}......".format(i), end="")
-        if filecmp.cmp("out/output{}.txt".format(i), "test_out/output{}.txt".format(i)) == False:
+        if filecmp.cmp("out/output{}.txt".format(i),
+                       "test_out/output{}.txt".format(i)) == False:
             print("\n\nTest case {} failed!".format(i))
             return False
         print("Succeeded!")
@@ -125,7 +118,7 @@ def CleanUp(plat: str):
 
 if __name__ == "__main__":
     plat = platform.system()
-    print("\033[32m", end="")
+    print("\033[32mTest platform: {}\n".format(plat))
     Compile()
     GenTest(plat)
     RunStd(plat)
@@ -133,3 +126,4 @@ if __name__ == "__main__":
     if DiffFile() == True:
         print("\nAll test passed!")
     CleanUp(plat)
+    print("\033[0m", end="")

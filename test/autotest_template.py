@@ -89,7 +89,8 @@ def RunTest():
             command = "test.exe in\\input{}.txt test_out\\output{}.txt".format(
                 i, i)
         else:
-            command = "./test in/input{}.txt test_out/output{}.txt".format(i, i)
+            command = "./test in/input{}.txt test_out/output{}.txt".format(
+                i, i)
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
@@ -103,7 +104,8 @@ def DiffFile():
 
     for i in range(1, test_num + 1):
         print("Diffing test case {}......".format(i), end="")
-        if filecmp.cmp("out/output{}.txt".format(i), "test_out/output{}.txt".format(i)) == False:
+        if filecmp.cmp("out/output{}.txt".format(i),
+                       "test_out/output{}.txt".format(i)) == False:
             print("\n\nTest case {} failed!".format(i))
             return False
         print("Succeeded!")
@@ -130,7 +132,7 @@ def CleanUp(plat: str):
 
 if __name__ == "__main__":
     plat = platform.system()
-    print("\033[32m", end="")
+    print("\033[32mTest platform: {}\n".format(plat))
     Compile()
     GenTest(plat)
     RunStd(plat)
@@ -138,3 +140,4 @@ if __name__ == "__main__":
     if DiffFile() == True:
         print("\nAll test passed!")
     CleanUp(plat)
+    print("\033[0m", end="")

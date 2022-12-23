@@ -4,11 +4,16 @@ import filecmp
 import shutil
 import time
 
-test_num = 10
-prop = [(100, 100, 50), (1000, 1000, 50), (10000, 10000, 100),
-        (50000, 10000, 100), (50000, 50000, 100), (75000, 75000, 100),
-        (75000, 75000, 200), (75000, 75000, 300), (100000, 100000, 200),
-        (100000, 100000, 300)]
+test_num = 6
+prop = [
+    # EDIT
+    (100, 100),
+    (1000, 1000),
+    (10000, 10000),
+    (50000, 10000),
+    (100000, 100000),
+    (1000000, 10000000)
+]
 
 
 def Compile():
@@ -32,11 +37,11 @@ def GenTest(plat: str):
     for i in range(1, test_num + 1):
         print("Generating test case {}......".format(i), end="")
         if plat == "Windows":
-            command = "gen.exe {} {} {} in\\input{}.txt".format(
-                prop[i - 1][0], prop[i - 1][1], prop[i - 1][2], i)
+            command = "gen.exe {} in\\input{}.txt".format(prop[i - 1][0], i)
         else:
-            command = "./gen {} {} {} in/input{}.txt".format(
-                prop[i - 1][0], prop[i - 1][1], prop[i - 1][2], i)
+            # EDIT
+            command = "./gen {} in/input{}.txt".format(prop[i - 1][0], i)
+            pass
         startTime = time.perf_counter()
         os.system(command)
         endTime = time.perf_counter()
