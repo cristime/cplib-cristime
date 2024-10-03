@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../Testlib/testlib.h"
+#include "../testlib/testlib.h"
 
 int *origin, n, m;
 std::vector<std::vector<int>> ops;
