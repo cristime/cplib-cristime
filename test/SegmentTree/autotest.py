@@ -26,7 +26,7 @@ def GenTest(plat: str):
     # Generating the test cases
     print()
     print("### Generating the test cases ###")
-    if os.path.isdir("in") == False:
+    if os.path.isdir("in") is False:
         os.mkdir("in")
     for i in range(1, test_num + 1):
         print("Generating test case {}......".format(i), end="")
@@ -47,7 +47,7 @@ def RunStd(plat: str):
     # Run std code
     print()
     print("### Run std code ###")
-    if os.path.isdir("out") == False:
+    if os.path.isdir("out") is False:
         os.mkdir("out")
     for i in range(1, test_num + 1):
         print("Running test case {}......".format(i), end="")
@@ -66,7 +66,7 @@ def RunTest():
     # Run the test
     print("\n### Running test ###")
 
-    if os.path.isdir("test_out") == False:
+    if os.path.isdir("test_out") is False:
         os.mkdir("test_out")
 
     for i in range(1, test_num + 1):
@@ -91,7 +91,7 @@ def DiffFile():
     for i in range(1, test_num + 1):
         print("Diffing test case {}......".format(i), end="")
         if filecmp.cmp("out/output{}.txt".format(i),
-                       "test_out/output{}.txt".format(i)) == False:
+                       "test_out/output{}.txt".format(i)) is False:
             print("\n\nTest case {} failed!".format(i))
             return False
         print("Succeeded!")
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     GenTest(plat)
     RunStd(plat)
     RunTest()
-    if DiffFile() == True:
+    if DiffFile() is True:
         print("\nAll test passed!")
     CleanUp(plat)
     print("\033[0m", end="")
